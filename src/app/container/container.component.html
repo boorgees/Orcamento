@@ -1,0 +1,12 @@
+<main class="container__body">
+    <section class="container__header">
+        <h1>{{title}}</h1>
+        <div class="container__content">
+            <input type="text" placeholder="Nome" class="container__input" [(ngModel)]="nome" />
+            <input type="tel" placeholder="Telefone" class="container__input" [(ngModel)]="telefone" />
+            <input type="email" placeholder="E-mail" class="container__input" [(ngModel)]="email" />
+            <button type="button" id="btnAdd" (click)="addToList()">+ Novo</button>
+        </div>
+    </section>
+    <app-contato [lista]="lista"></app-contato>
+</main>
