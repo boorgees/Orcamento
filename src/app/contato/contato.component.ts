@@ -11,4 +11,7 @@ export class ContatoComponent {
 
   @Input() lista: String[] = [];
 
+  removeItem(index: number) {
+    this.lista.splice(index, 1);
+  }
 }

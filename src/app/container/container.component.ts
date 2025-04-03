@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContatoComponent } from '../contato/contato.component';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-container',
-  imports: [FormsModule, ContatoComponent],
+  imports: [FormsModule, ContatoComponent, CommonModule],
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css']
 })
@@ -23,4 +25,30 @@ export class ContainerComponent {
     this.telefone = '';
     this.email = '';
   }
+  
+
+  // dados:any;
+
+  // constructor(private http: HttpClient)  {}
+
+  // ngOnInit():void {
+  //   this.obterPrevisoes();
+  // }
+
+  // obterPrevisoes():void {
+  //   let url = "http://localhost:5048/WeatherForecast";
+  //   this.http.get(url).subscribe({
+  //     // Funcionou a requisição
+  //     next: (response) => {
+  //       this.dados = response;
+  //       console.log(this.dados);
+  //     },
+  //     // Deu ruim!
+  //     error: (erro) => {
+  //       alert("Deu ruim!");
+  //       console.log(`Erro ao obter as previsões: ${erro}`)
+  //     }
+  //   });
+  // }
+  
 }
