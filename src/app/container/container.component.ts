@@ -18,12 +18,18 @@ export class ContainerComponent {
   nome: string = '';
   telefone: string = '';
   email: string = '';
-
+  valor:number = 0;
   addToList() {
-    this.lista.push(`Nome: ${this.nome} - Telefone: ${this.telefone} - E-mail: ${this.email}`);
+    const valorFormatado = this.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const dataAtual = new Date().toLocaleDateString('pt-BR');
+   
+    
+    this.lista.push(`Nome: ${this.nome} - Telefone: ${this.telefone} - E-mail: ${this.email} - Valor: ${valorFormatado} - Data: ${dataAtual}`);
     this.nome = '';
     this.telefone = '';
     this.email = '';
+    this.valor = 0;
+    // this.data = new Date ();
   }
   
 

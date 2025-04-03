@@ -3,8 +3,11 @@
         <h1>{{title}}</h1>
         <div class="container__content">
             <input type="text" placeholder="Nome" class="container__input" [(ngModel)]="nome" />
+            <input type="number" placeholder="Valor" class="container__input" [(ngModel)]="valor" />
+            <!-- <input type="date" placeholder="Data" class="container__input" [(ngModel)]="data" /> -->
             <input type="tel" placeholder="Telefone" class="container__input" [(ngModel)]="telefone" />
             <input type="email" placeholder="E-mail" class="container__input" [(ngModel)]="email" />
+            
             <button type="button" id="btnAdd" (click)="addToList()">+ Novo</button>
         </div>
     </section>

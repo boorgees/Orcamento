@@ -29,6 +29,8 @@ ul {
 }
 
 li {
+    display: flex;
+    justify-content: space-between;
     background-color: #f8f9fa;
     border: 1px solid #e9ecef;
     border-radius: 6px;
@@ -48,4 +50,18 @@ li:hover {
 
 li:empty {
     display: none;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
 }
