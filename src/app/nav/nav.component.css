@@ -1,8 +1,15 @@
 .nav__header {
     display: flex;
+    flex-grow: 1;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     background-color: #357ac0;
     color: white;
+}
+
+@media (max-width: 450px) {
+    h3 {
+        display: none;
+    }
 }

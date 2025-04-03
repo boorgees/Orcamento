@@ -49,6 +49,12 @@ button {
     gap: 1rem;
     padding: 1rem;
     margin: 1rem;
+    width: fit-content;
+    width: 100%;
+    flex-wrap: wrap;
+    /* Permite que os itens se ajustem em várias linhas, se necessário */
+    justify-content: space-between;
+    /* Ajusta o espaçamento entre os itens */
 }
 
 h1 {
@@ -66,4 +72,14 @@ h1 {
     text-underline-position: under;
     text-underline-style: solid;
 
+}
+
+@media (max-width: 450px) {
+
+    .container__body,
+    .container__header,
+    .container__content {
+        display: flex;
+        flex-direction: column;
+    }
 }
