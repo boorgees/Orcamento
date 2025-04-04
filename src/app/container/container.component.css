@@ -52,9 +52,7 @@ button {
     width: fit-content;
     width: 100%;
     flex-wrap: wrap;
-    /* Permite que os itens se ajustem em várias linhas, se necessário */
     justify-content: space-between;
-    /* Ajusta o espaçamento entre os itens */
 }
 
 h1 {
