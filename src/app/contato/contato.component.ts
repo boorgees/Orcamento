@@ -11,6 +11,10 @@ export class ContatoComponent {
 
   @Input() lista: String[] = [];
 
+  @Input() nome: string = '';
+  @Input() email: string = '';
+  @Input() telefone: string = '';
+
   removeItem(index: number) {
     this.lista.splice(index, 1);
   }

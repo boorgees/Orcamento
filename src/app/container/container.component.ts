@@ -12,14 +12,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContainerComponent {
   title: string = "Contatos";
-
+  // solução que eu tinha feito
   lista: String[] = [];
-
   nome: string = '';
   telefone: string = '';
   email: string = '';
   valor: number = 0;
   descricao: string = '';
+
+  //solução do professor em aula
+  dados: any;
+  contatosApi: any;
+  servicosApi: any;
+  contatos: Array<ContatoComponent> = [];
 
   addToList() {
     const valorFormatado = this.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -34,29 +39,40 @@ export class ContainerComponent {
     // this.data = new Date ();
   }
 
+  constructor(private http: HttpClient) { }
 
-  // dados:any;
+  ngOnInit(): void {
+    //this.obterPrevisoes();
+    this.obterContatos();
+  }
 
-  // constructor(private http: HttpClient)  {}
+  obterContatos() {
+    let url = 'http://localhost:5048/api/Contatos';
+    this.http.get(url).subscribe({
+      next: (response) => {
+        this.contatosApi = response;
+        for (let contato of this.contatosApi) {
+          console.log(contato);
+          this.contatos.push({
+            nome: contato.nome,
+            email: contato.email,
+            telefone: contato.numero,
+          });
+        }
+      },
+      error: (erro) => {
+        alert('Ocorreu um erro ao buscar os contatos na api => /api/Contatos');
+        console.log(`Ocorreu um erro ao realizar a requisição: ${erro}`);
+      },
+    });
+  }
 
-  // ngOnInit():void {
-  //   this.obterPrevisoes();
-  // }
 
-  // obterPrevisoes():void {
-  //   let url = "http://localhost:5048/WeatherForecast";
-  //   this.http.get(url).subscribe({
-  //     // Funcionou a requisição
-  //     next: (response) => {
-  //       this.dados = response;
-  //       console.log(this.dados);
-  //     },
-  //     // Deu ruim!
-  //     error: (erro) => {
-  //       alert("Deu ruim!");
-  //       console.log(`Erro ao obter as previsões: ${erro}`)
-  //     }
-  //   });
-  // }
 
+}
+
+interface Contato {
+  nome: string;
+  email: string;
+  numero: string;
 }
