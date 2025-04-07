@@ -12,33 +12,34 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContainerComponent {
   title: string = "Contatos";
-  // solução que eu tinha feito
-  lista: String[] = [];
-  nome: string = '';
-  telefone: string = '';
-  email: string = '';
-  valor: number = 0;
-  descricao: string = '';
+  // // solução que eu tinha feito
+  // lista: String[] = [];
+  // nome: string = '';
+  // telefone: string = '';
+  // email: string = '';
+  // valor: number = 0;
+  // descricao: string = '';
 
   //solução do professor em aula
   dados: any;
   contatosApi: any;
   servicosApi: any;
-  contatos: Array<ContatoComponent> = [];
+  contatos: Array<Contato> = [];
 
   addToList() {
-    const valorFormatado = this.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const dataAtual = new Date().toLocaleDateString('pt-BR');
+  //   const valorFormatado = this.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  //   const dataAtual = new Date().toLocaleDateString('pt-BR');
 
 
-    this.lista.push(`Nome: ${this.nome} - Telefone: ${this.telefone} - Descrição: ${this.descricao} - E-mail: ${this.email} - Valor: ${valorFormatado} - Data: ${dataAtual}`);
-    this.nome = '';
-    this.telefone = '';
-    this.email = '';
-    this.valor = 0;
-    // this.data = new Date ();
+  //   this.lista.push(`Nome: ${this.nome} - Telefone: ${this.telefone} - Descrição: ${this.descricao} - E-mail: ${this.email} - Valor: ${valorFormatado} - Data: ${dataAtual}`);
+  //   this.nome = '';
+  //   this.telefone = '';
+  //   this.email = '';
+  //   this.valor = 0;
+  //   // this.data = new Date ();
   }
 
+  
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -56,7 +57,7 @@ export class ContainerComponent {
           this.contatos.push({
             nome: contato.nome,
             email: contato.email,
-            telefone: contato.numero,
+            numero: contato.numero,
           });
         }
       },
@@ -67,8 +68,9 @@ export class ContainerComponent {
     });
   }
 
-
-
+  removeItem(index: number) {
+    this.contatos.splice(index, 1);
+  }
 }
 
 interface Contato {

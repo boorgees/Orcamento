@@ -1,14 +1,19 @@
 <main class="container__body">
     <section class="container__header">
         <h1>{{title}}</h1>
-        <!-- <div class="container__content">
+        <div class="container__content">
+            <!-- <div class="container__content">
             <input type="text" placeholder="Nome" id="nome" class="container__input" [(ngModel)]="nome" />
             <input type="number" placeholder="" id="valor" class="container__input" [(ngModel)]="valor" />
             <input type="text" placeholder="Descrição" id="" class="container__input" [(ngModel)]="descricao" />
             <input type="tel" placeholder="Telefone" class="container__input" [(ngModel)]="telefone" />
-            <input type="email" placeholder="E-mail" class="container__input" [(ngModel)]="email" />
-
-        </div> -->
+            <input type="email" placeholder="E-mail" class="container__input" [(ngModel)]="email" /> -->
+            @for (item of contatos; track $index) {
+            <app-contato [nome]="item.nome" [telefone]="item.numero" [email]="item.email">
+                <button class="btn" (click)="removeItem($index)">Deletar</button>
+            </app-contato>
+            }
+        </div>
         <!-- <button type="button" id="btnAdd" (click)="addToList()">+ Novo</button> -->
     </section>
     <!-- <app-contato [lista]="lista"></app-contato> -->
