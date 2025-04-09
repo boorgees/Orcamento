@@ -1,4 +1,15 @@
-<nav class="nav__header">
+<!-- <nav class="nav__header">
     <h1>ORÇAMENTOR</h1>
     <h3>Facilitando seus orçamentos.</h3>
+</nav> -->
+
+<nav>
+    <span><a routerLink="/">Orçamentor</a></span>
+    <div class="menu">
+        <a routerLink="/usuario">Usuário</a> |
+        <a routerLink="/contatos">Contatos</a>
+    </div>
+    <span class="logout">
+        <button (click)="logout()">Sair</button>
+    </span>
 </nav>

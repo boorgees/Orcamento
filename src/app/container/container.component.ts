@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContatoComponent } from '../contato/contato.component';
 import { CommonModule } from '@angular/common';
@@ -71,6 +71,8 @@ export class ContainerComponent {
   removeItem(index: number) {
     this.contatos.splice(index, 1);
   }
+
+  @Input() nome: string = '';
 }
 
 interface Contato {
