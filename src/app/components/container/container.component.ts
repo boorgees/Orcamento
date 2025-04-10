@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ContatoComponent } from '../contato/contato.component';
-import { ServicoComponent } from '../../servico/servico.component';
+import { ServicoComponent } from '../../page/servico/servico.component';
 
 interface Contato {
   nome: string;
@@ -71,7 +71,6 @@ export class ContainerComponent implements OnInit {
     });
   }
 
-
   removeItem(index: number) {
     this.contatosApi.splice(index, 1);
   }
@@ -83,27 +82,4 @@ export class ContainerComponent implements OnInit {
   @Input() titulo: string = 'Contatos';
   @Input() descricao: string = 'Contatos para realização de orçamentos';
   @Input() notaRodape: string = 'Nota de rodapé importante!';
-
-  contatos: Array<ContatoComponent> = [
-    // {
-    //   nome: 'Marco Antonio Angelo',
-    //   email: 'marco.angelo@gmail.com',
-    //   telefone: '(47) 99171-0879',
-    // },
-    // {
-    //   nome: 'José da Silva',
-    //   email: 'jose.silva@gmail.com',
-    //   telefone: '(47) 99171-0879',
-    // },
-    // {
-    //   nome: 'Maria Antonio',
-    //   email: 'maria.antonio@gmail.com',
-    //   telefone: '(47) 99171-0879',
-    // },
-    // {
-    //   nome: 'Catarina Bailarina',
-    //   email: 'catarina.bailarina@gmail.com',
-    //   telefone: '(47) 99171-0879',
-    // },
-  ];
 }

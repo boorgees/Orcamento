@@ -16,7 +16,9 @@
     }
 
     @for (item of servicosApi; track $index) {
-    <app-servico [nome]="item.nome" [descricao]="item.descricao" [preco]="item.preco"></app-servico>
+    <app-servico [nome]="item.nome" [descricao]="item.descricao" [preco]="item.preco">
+      <button class="btn" (click)="removeItem($index)">Deletar</button>
+    </app-servico>
     }
   </div>
   <div class="container__footer">
