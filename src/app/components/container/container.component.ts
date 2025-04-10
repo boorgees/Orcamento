@@ -1,6 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ContatoComponent } from '../contato/contato.component';
+
+interface Contato {
+  nome: string;
+  email: string;
+  telefone: string;
+}
 
 @Component({
   selector: 'app-container',
@@ -9,48 +15,52 @@ import { ContatoComponent } from '../contato/contato.component';
   templateUrl: './container.component.html',
   styleUrl: './container.component.css',
 })
-export class ContainerComponent {
+
+export class ContainerComponent implements OnInit {
   dados: any;
-  contatosApi: any;
+  contatosApi: Contato[] = [];
   servicosApi: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('ContainerComponent construído');
+  }
 
   ngOnInit(): void {
-    //this.obterPrevisoes();
+    console.log('ContainerComponent inicializado');
     this.obterContatos();
   }
 
   obterContatos() {
-    let url = 'http://localhost:5048/api/Contatos';
-    this.http.get<ContatoComponent[]>(url).subscribe({
+    console.log('Iniciando busca de contatos...');
+    let url = 'http://localhost:5128/api/Contatos';
+    this.http.get<Contato[]>(url).subscribe({
       next: (response) => {
-
-        debugger;
+        console.log('Dados recebidos da API:', response);
         this.contatosApi = response;
+        console.log('contatosApi atualizado:', this.contatosApi);
       },
       error: (erro) => {
+        console.error('Erro ao buscar contatos:', erro);
         alert('Ocorreu um erro ao buscar os contatos na api => /api/Contatos');
-        console.log(`Ocorreu um erro ao realizar a requisição: ${erro}`);
       },
     });
   }
 
-  obterPrevisoes(): void {
-    let url = 'http://localhost:5048/WeatherForecast';
-    this.http.get(url).subscribe({
-      // Funcionou a requisição
-      next: (response) => {
-        this.dados = response;
-        console.log(this.dados);
-      },
-      // Deu ruim!
-      error: (erro) => {
-        alert('Deu ruim!');
-        console.log(`Erro ao obter as previsões: ${erro}`);
-      },
-    });
-  }
+  // obterPrevisoes(): void {
+  //   let url = 'http://localhost:5048/WeatherForecast';
+  //   this.http.get(url).subscribe({
+  //     // Funcionou a requisição
+  //     next: (response) => {
+  //       this.dados = response;
+  //       console.log(this.dados);
+  //     },
+  //     // Deu ruim!
+  //     error: (erro) => {
+  //       alert('Deu ruim!');
+  //       console.log(`Erro ao obter as previsões: ${erro}`);
+  //     },
+  //   });
+  // }
 
   // obterDados():void {
   //   let endpoint = "https://localhost:7299/WeatherForecast";
@@ -66,11 +76,11 @@ export class ContainerComponent {
   // }
 
   removeItem(index: number) {
-    this.contatos.splice(index, 1);
+    this.contatosApi.splice(index, 1);
   }
 
   addItem() {
-    this.contatos.push({ nome: 'Novo contato', email: ' ', telefone: ' ' });
+    this.contatosApi.push({ nome: 'Novo contato', email: ' ', telefone: ' ' });
   }
 
   @Input() titulo: string = 'Contatos';
@@ -99,10 +109,4 @@ export class ContainerComponent {
     //   telefone: '(47) 99171-0879',
     // },
   ];
-}
-
-interface Contato {
-  nome: string;
-  email: string;
-  numero: string;
 }
