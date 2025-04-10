@@ -10,16 +10,14 @@
   </div>
   <div class="container__body">
     @for (item of contatosApi; track $index) {
-    <app-contato
-      [nome]="item.nome"
-      [telefone]="item.telefone"
-      [email]="item.email"
-    >
+    <app-contato [nome]="item.nome" [telefone]="item.telefone" [email]="item.email">
       <button class="btn" (click)="removeItem($index)">Deletar</button>
     </app-contato>
     }
 
-  
+    @for (item of servicosApi; track $index) {
+    <app-servico [nome]="item.nome" [descricao]="item.descricao" [preco]="item.preco"></app-servico>
+    }
   </div>
   <div class="container__footer">
     <span>{{ notaRodape }}</span>

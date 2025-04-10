@@ -5,11 +5,12 @@ import { NavComponent } from './components/nav/nav.component';
 import { ContainerComponent } from "./components/container/container.component";
 import { ContatoComponent } from "./components/contato/contato.component";
 import { HttpClientModule } from '@angular/common/http';
+import { ServicoComponent } from './servico/servico.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavComponent, ContainerComponent, HttpClientModule],
+  imports: [CommonModule, RouterOutlet, NavComponent, ContainerComponent, ServicoComponent, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
