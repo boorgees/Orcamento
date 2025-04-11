@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ContatoComponent } from '../contato/contato.component';
 import { ServicoComponent } from '../../page/servico/servico.component';
+import { ActivatedRoute } from '@angular/router';
 
 interface Contato {
   nome: string;
@@ -28,14 +29,28 @@ export class ContainerComponent implements OnInit {
   contatosApi: Contato[] = [];
   servicosApi: Servico[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {
     console.log('ContainerComponent construído');
   }
 
   ngOnInit(): void {
     console.log('ContainerComponent inicializado');
-    this.obterContatos();
-    this.obterServicos();
+    
+    // Verifica se há dados na rota
+    this.route.data.subscribe(data => {
+      if (data['tipoConteudo']) {
+        this.tipoConteudo = data['tipoConteudo'];
+      }
+    });
+
+    if (this.tipoConteudo === 'contatos') {
+      this.obterContatos();
+    } else if (this.tipoConteudo === 'servicos') {
+      this.obterServicos();
+    }
   }
 
   // BUSCA OS SERVICIOS NA API
@@ -72,13 +87,22 @@ export class ContainerComponent implements OnInit {
   }
 
   removeItem(index: number) {
-    this.contatosApi.splice(index, 1);
+    if (this.tipoConteudo === 'contatos') {
+      this.contatosApi.splice(index, 1);
+    } else if (this.tipoConteudo === 'servicos') {
+      this.servicosApi.splice(index, 1);
+    }
   }
 
   addItem() {
-    this.contatosApi.push({ nome: 'Novo contato', email: ' ', telefone: ' ' });
+    if (this.tipoConteudo === 'contatos') {
+      this.contatosApi.push({ nome: 'Novo contato', email: ' ', telefone: ' ' });
+    } else if (this.tipoConteudo === 'servicos') {
+      this.servicosApi.push({ nome: 'Novo serviço', descricao: ' ', preco: ' ' });
+    }
   }
 
+  @Input() tipoConteudo: 'contatos' | 'servicos' = 'contatos';
   @Input() titulo: string = 'Contatos';
   @Input() descricao: string = 'Contatos para realização de orçamentos';
   @Input() notaRodape: string = 'Nota de rodapé importante!';

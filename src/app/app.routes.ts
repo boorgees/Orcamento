@@ -4,13 +4,14 @@ import { HomeComponent } from './page/home/home.component';
 import { ServicoComponent } from './page/servico/servico.component';
 import { LoginComponent } from './page/login/login.component';
 
+
+// CRIA O ROUTER OUTLET E DETERMINA OS CAMINHOS
 export const routes: Routes = [
-    {
-        path: 'login', component: LoginComponent
-    },
+    { path: 'login', component: LoginComponent },
     { path: '', component: HomeComponent },
     { path: 'contatos', component: ContainerComponent },
     { path: 'home/:id', component: HomeComponent },
-    { path: 'servicos', component: ServicoComponent },
-
+    {
+        path: 'servicos', component: ContainerComponent, data: { tipoConteudo: 'servicos' }
+    },
 ];
