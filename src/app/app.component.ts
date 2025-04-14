@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Route, Router, RouterOutlet } from '@angular/router';
 import { NavComponent } from './components/nav/nav.component';
 import { ContainerComponent } from "./components/container/container.component";
 import { ContatoComponent } from "./components/contato/contato.component";
@@ -16,4 +16,18 @@ import { ServicoComponent } from './page/servico/servico.component';
 })
 export class AppComponent {
   title = 'orcamentor';
+
+  showNavbar = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === '/login' ||  event.url === '/') {
+          this.showNavbar = false;
+        } else {
+          this.showNavbar = true;
+        }
+      }
+    });  }
+
 }

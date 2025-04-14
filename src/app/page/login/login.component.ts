@@ -15,7 +15,7 @@ export class LoginComponent {
   email: string = '';
   senha: string = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
 
@@ -26,12 +26,11 @@ export class LoginComponent {
     }
 
     if (this.email === 'christian' && this.senha === '1234') {
-      alert('Login bem-sucedido!');
+      this.router.navigate(['/home']);
+
     }
     else {
       alert('Credenciais inválidas. Tente novamente.');
     }
-
-    return;
   }
 }

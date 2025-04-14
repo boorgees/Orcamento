@@ -7,8 +7,9 @@ import { LoginComponent } from './page/login/login.component';
 
 // CRIA O ROUTER OUTLET E DETERMINA OS CAMINHOS
 export const routes: Routes = [
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: '', component: HomeComponent },
+    { path: 'home', component: HomeComponent },
     { path: 'contatos', component: ContainerComponent },
     { path: 'home/:id', component: HomeComponent },
     {

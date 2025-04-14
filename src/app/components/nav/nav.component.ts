@@ -12,8 +12,8 @@ import { Router,RouterModule } from '@angular/router';
 export class NavComponent {
   
   route = new Router;
-  logout(id:any){
-    this.route.navigate(['/home',id]);
+  logout(){
+    this.route.navigate(['/login']);
 
   }
 }
