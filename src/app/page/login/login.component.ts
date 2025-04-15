@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService, LoginRequest } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +12,14 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
+
 export class LoginComponent {
-  email: string = '';
-  senha: string = '';
+  loginRequest: LoginRequest = {
+    email: '',
+    senha: ''
+  };
 
-  constructor(private http: HttpClient, private router: Router) { }
-
-
+  constructor(private http: HttpClient, private router: Router, private AuthService: AuthService) { }
 
   login(form: any) {
     if (form.invalid) {
@@ -25,12 +27,13 @@ export class LoginComponent {
       return;
     }
 
-    if (this.email === 'christian' && this.senha === '1234') {
-      this.router.navigate(['/home']);
-
-    }
-    else {
-      alert('Credenciais inválidas. Tente novamente.');
-    }
+    this.AuthService.login(this.loginRequest).subscribe({
+      next: (response) => {
+        this.router.navigate(['/home']);
+      },
+      error: (error: Error) => {
+        console.error('Erro no login:', error)
+      }
+    });
   }
 }
